@@ -21,7 +21,7 @@
   --rare:      #ff5555;   /* §4 Rebellion Orange */
   --epic:      #ffaa00;   /* §6 gold */
   --spec:      #ff55ff;   /* §d light purple */
-  --corrupt:   #ff5555;   /* §4 same as rare — ERR:CORRUPTED */
+  --corrupt:   #aa0000;   /* §4 same as rare — CORRUPTED */
   --forge:     #ffaa00;   /* §6 gold — Orb of the Forge */
   --cast:      #aaaaaa;   /* §7 grey — ∟ COPIED */
   --transcend: #55ffff;   /* §b aqua */
@@ -547,13 +547,13 @@ body::after {
       <div class="tier-label">Transcendence</div>
       <div class="tier-badge">∞ permanent</div>
     </div>
-    <div class="tier-desc">One random enchant becomes permanent — immune to every other orb in the game.</div>
+    <div class="tier-desc">One random enchant becomes permanent — immune to every other orb in the game. Requires Epic or Specialised with 4+ enchants. One use per item. <strong style="color:var(--cb)">1 in 1,000 chance to transcend two enchants.</strong></div>
     <div class="orb-list">
       <div class="orb">
         <div class="orb-dot"></div>
         <div class="orb-body">
           <div class="orb-name">Orb of Transcendence</div>
-          <div class="orb-effect">Stamps one enchant as <span style="color:var(--transcend);font-family:'Space Mono',monospace;font-size:10px">∞ EnchantName</span> — untouchable forever</div>
+          <div class="orb-effect">Stamps one enchant as <span style="color:var(--transcend);font-family:'Space Mono',monospace;font-size:10px">∞ EnchantName Level</span> — untouchable forever. One use per item.</div>
         </div>
       </div>
     </div>
@@ -561,16 +561,16 @@ body::after {
 
   <div class="note note-transcend" style="margin-top:4px;">
     <div class="note-label">Rule</div>
-    Transcended enchants survive Entropy, Chaos, Regret, Absolution, and Blessing. Even wiping the item back to common won't remove them.
+    Transcended enchants survive Entropy, Chaos, Regret, Absolution, and Blessing. Entropy preserves the one-use lock — you cannot transcend again after wiping. Requires Epic or Specialised with 4+ enchants.
   </div>
 
   <!-- CORRUPTION -->
   <div class="tier tier-corrupt" style="margin-top:8px;">
     <div class="tier-head">
       <div class="tier-label">Corruption</div>
-      <div class="tier-badge">ERR:CORRUPTED</div>
+      <div class="tier-badge">CORRUPTED</div>
     </div>
-    <div class="tier-desc">Seals the item permanently. Works on common items too — the outcome is always unpredictable.</div>
+    <div class="tier-desc">Seals the item with <span style="color:var(--corrupt);font-family:'Space Mono',monospace;font-size:11px">CORRUPTED</span> permanently. Works on common items too — the outcome is always unpredictable.</div>
     <div class="orb-list">
       <div class="orb">
         <div class="orb-dot"></div>
