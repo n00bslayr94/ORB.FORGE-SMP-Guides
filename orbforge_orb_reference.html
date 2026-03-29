@@ -18,6 +18,7 @@
   --dim:     #334155;
 
   --c4:  #ff5555;
+  --cm:  #aa0000;  /* §m material redstone */
   --c6:  #ffaa00;
   --c7:  #aaaaaa;
   --c8:  #555555;
@@ -207,7 +208,7 @@ body::after {
 
 .tag-graven  { display:inline-block; font-family:'Space Mono',monospace; font-size:9px; color:var(--c7); background:rgba(170,170,170,0.08); border:1px solid rgba(170,170,170,0.15); border-radius:3px; padding:1px 5px; }
 .tag-cast    { display:inline-block; font-family:'Space Mono',monospace; font-size:9px; color:var(--c7); background:rgba(170,170,170,0.08); border:1px solid rgba(170,170,170,0.15); border-radius:3px; padding:1px 5px; }
-.tag-corrupt { display:inline-block; font-family:'Space Mono',monospace; font-size:9px; color:var(--c4); background:rgba(255,85,85,0.08); border:1px solid rgba(255,85,85,0.15); border-radius:3px; padding:1px 5px; }
+.tag-corrupt { display:inline-block; font-family:'Space Mono',monospace; font-size:9px; color:var(--cm); background:rgba(170,0,0,0.10); border:1px solid rgba(170,0,0,0.2); border-radius:3px; padding:1px 5px; }
 .tag-transcend { display:inline-block; font-family:'Space Mono',monospace; font-size:9px; color:var(--cb); background:rgba(85,255,255,0.08); border:1px solid rgba(85,255,255,0.15); border-radius:3px; padding:1px 5px; }
 
 .footer {
@@ -316,7 +317,7 @@ body::after {
     <div class="orb-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAABc0lEQVQ4jcWTvarqQBSFvz3YJBBRULCIKAgW2lloYW3jc/gMeQmxtfRxxF5B0htQGzUxgz/ROc0h6ImHW5ziTrnZa8239uwRYwx/OepPaiD3qei67keszWYj/zRwXdd4nodt22itcRyH/X7PYrHAdV3z00T9FE8mE0SE4XCIbdvEccx6vSaXy9HtdjN06lXseR7b7ZbRaESlUmEwGOD7PlprkiThfD7TbrffTN4iPJ9PLMtiNptxOBwAuF6vlEolfN9HKUWxWPx9BlEUEUURIkI+nycMQ5IkIQgCRITL5ZIafzSYz+cYY6jX61SrVXa7HUEQ8Hg8OJ1OWJaFUup3g9vthtaa5XKZIgOEYZj2NJtNVqvV51eI4xitNVprwjDkeDymkRzHodVqMR6P3wjkdZVFxPR6Pe73O0oplFIkSUKhUKBWqzGdTrEsC2NMugtvEYwxIiKm3+8DUC6XMcbQaDTodDoZcYbglSRT/L4g0/vff+MXFtmzUCkHyiAAAAAASUVORK5CYII=" alt="restore_orb"></div>
     <div class="orb-text">
       <div class="orb-name">Orb of Entropy</div>
-      <div class="orb-desc">Strips all enchants and the rarity tag — resets the item to common. Transcended enchants survive.<br><span class="req req-enchant">Enchanted item</span></div>
+      <div class="orb-desc">Strips all enchants and the rarity tag — resets the item to common. Transcended enchants and the one-use lock survive — you cannot transcend again after wiping.<br><span class="req req-enchant">Enchanted item</span></div>
     </div>
   </div>
 
@@ -324,7 +325,7 @@ body::after {
     <div class="orb-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAABdUExURf///1EhGf9MGdZAAP//M/9MAP//mXMqI449QP///7ZgYt2Rl//MGd6UmfPY2lEhGZ1IR5E+O4o4NY06N8t6AP2nAP/yv/ahANqHAOuWAP/JL92JAOOOAP+0Ce+aALXI9EQAAAACdFJOUwAAdpPNOAAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfoCQMMCy4fXtOwAAAAbklEQVQY03XNyRaAIAgFUBtpMgnMBqv//8zKReiit/LdI6DUT/Ii7UVZVinUdfIFmrZtIOpdP+RaQwR6HHUnYHB6YwToqUwClmbnFrYfrNYt2269jHi3HedqMtlx7aenCBiZiSMARJxArigTEp43UykGJ8eoPNcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjQtMDktMDNUMTI6MTE6MzUrMDA6MDCoHhRaAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI0LTA5LTAzVDEyOjExOjM1KzAwOjAw2UOs5gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNC0wOS0wM1QxMjoxMTo0NiswMDowMLV7nr0AAAAASUVORK5CYII=" alt="blessing_orb"></div>
     <div class="orb-text">
       <div class="orb-name">Orb of Blessing</div>
-      <div class="orb-desc">Rerolls all non-transcended enchants with a guaranteed minimum of 3. Transcended enchants survive.<br><span class="req req-rare">Rare or above</span></div>
+      <div class="orb-desc">Rerolls all non-transcended enchants with a guaranteed minimum of 3 — with a chance of 4, 5, or 6. Transcended enchants survive.<br><span class="req req-rare">Rare or above</span></div>
     </div>
   </div>
 
@@ -359,7 +360,7 @@ body::after {
     <div class="orb-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAABqklEQVQ4jY2SMUhbURSGv+stZsscHpQm9D20BEkpZM8UaRW1UCFDx2yKDXEQinOHQqGGYseuJYMoqNEqkupmpgxv8T7z0EB4WyFFJFluB3nhvSRPeqfDPef/z///HKG1BqAgPhDxdKAWfvFTbwEwEYXywR/LG/y43MLjBo+bkYHHCPRacQWrYHCwWQcgwbP/JtDv8m+RUnJd9dg52fPBmrClsQQ6k5phQkpezD3nylZ0tEuUlSdR+h3l8Pv9Oc1ug0p5O2TlMQX6lfmSqekpVNuh2W2wmi9xf3fPddXj26+vGCIlglkMCHxppmVSOztC9Wwy8WzIir8kmIPw7yAnlgg2rFga66kJgGo7qJ5NpbxNMmewsLBEXe+KYQt67fU6b8zFwYdpmQPwp+JnkjmD0+8XIc+hEB3lcOjsMZua59jdR9VsAFbzJaSU3J57VGpfIHCRoRBV2wFASkkmnsWKpQe9oRzGK/ir/4xIz8SztFou68snqJ4d2j42xMSkgdfvADCbmgeg1XFHwHW9O2oBEF6/Q2LSwIqlOXb3H25izOYoBf7Tw3PDQF/BPwCytwODnFVEAAAAAElFTkSuQmCC" alt="absolution_orb"></div>
     <div class="orb-text">
       <div class="orb-name">Orb of Absolution</div>
-      <div class="orb-desc">Removes one random non-transcended enchant with no GRAVEN penalty. The item stays clean.<br><span class="req req-enchant">Enchanted item</span></div>
+      <div class="orb-desc">Removes one random non-transcended enchant with no GRAVEN penalty. If the last enchant is removed, the item resets to common.<br><span class="req req-enchant">Enchanted item</span></div>
     </div>
   </div>
 
@@ -389,7 +390,7 @@ body::after {
     <div class="orb-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAB7UExURf///6dfAI1IAP/PHtKIAI1HGXIzAK1jAP/ztfizAPy2iP/hzNWPYdmPAP/CBf/69f+5i9eRY6ReMJ5YKumhAHkzBc6IWvq0hv/dxtGLXfawAMF3AP/UuJBLAP/Jpo9ULO+pe8B6TMuBALVvQf/xq+WfcduSAHYwAv///xVP8XsAAAABdFJOUwBA5thmAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+gJAwwLLh9e07AAAACcSURBVBjTVY/tEoIgEAARuzuDUq5SoUjsw3r/NwzIsnaGH+wwx54QoijEH7JcAcByR6rWSm8APhZpWzdNY4zhnURMRu4BjI7QoaJkoO26+J4N1fQWvbWKHYCk4ykL6xO27895RhRDGMdLCN7mf6S0w+B9OioJeS1vDKDCGOws7pPWhtk5lzuQHlOu+HYgpmrmpSPTRp5zx8+iccYLFVAKu/TdenkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjQtMDktMDNUMTI6MTE6MzUrMDA6MDCoHhRaAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI0LTA5LTAzVDEyOjExOjM1KzAwOjAw2UOs5gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNC0wOS0wM1QxMjoxMTo0NiswMDowMLV7nr0AAAAASUVORK5CYII=" alt="transcendence_orb"></div>
     <div class="orb-text">
       <div class="orb-name" style="color:var(--cg);">Orb of Transcendence</div>
-      <div class="orb-desc">One random enchant becomes <span class="tag-transcend">∞ permanent</span> — immune to every other orb. Cannot be removed, rerolled, or wiped.<br><span class="req req-enchant">Enchanted item with non-transcended enchant</span></div>
+      <div class="orb-desc">One random enchant becomes <span class="tag-transcend">∞ permanent</span> — immune to every other orb. Cannot be removed, rerolled, or wiped. <strong style="color:var(--cb)">1 in 1,000 chance to transcend two enchants.</strong><br><span class="req req-epic">Epic or Specialised · 4+ enchants · One use per item</span></div>
     </div>
   </div>
 
@@ -406,7 +407,7 @@ body::after {
     <div class="orb-text">
       <div class="orb-name">Orb of Corruption</div>
       <div class="orb-desc">
-        Always seals with <span class="tag-corrupt">ERR:CORRUPTED</span> — no orb can touch it again (except Forge). Works on common items.<br>
+        Always seals with <span class="tag-corrupt">CORRUPTED</span> — no orb can touch it again (except Forge). Works on common items.<br>
         <span style="color:var(--text);font-weight:500;font-size:11px">5%</span> Surge &nbsp;
         <span style="color:var(--text);font-weight:500;font-size:11px">15%</span> Chaos &nbsp;
         <span style="color:var(--text);font-weight:500;font-size:11px">20%</span> Ascension &nbsp;
