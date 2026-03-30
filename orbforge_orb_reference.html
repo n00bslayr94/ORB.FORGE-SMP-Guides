@@ -170,7 +170,7 @@ html,body { width:100%; min-height:100vh; }
       <div class="legend-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAD2UlEQVR4nO2bS0wTQRjHW7tAhVZA2gIFQosEsUE0WgMGY6JyUBMSDxi5mOhNTz4SFS5GITEaFS8eSDx4UkwMiVzkIPGRmBBEIlZSHiKUUECovNqFlj7AgzHwn8osm7aZ1N3/7deZ/ebrvzNfZra7SgVjVVoOrIrp327vUkZz/C3RDBaPkg1gnQBrRXU9/UunSs/n09r5YK9DTDwNV2Jaz69sT0fFZ7UmLpKLNyOhL1iSVQS8qh2kxuvp7yTjRfQjSn4JyAawToC1Ii6C9eYz1I2MZ4ce2J/SGemQoJ7+ReAPA3ZR30nyM0A2gHUCrCV5AwQ3QkKntWPpO6nXb++bAW6yYjvPZ1Ov12gmqe17i1OITyyQr1BRlPwMkA1gnQBrKYXWeFFqHnCCYQyYXMM1E/uBc93T1ASarJ+o8UgJ1QRSQhslyc8A2QDWCbCW5A0IK4KWNDN20I+IChjroii2CI4MzgMvrCQAS34GyAawToC1wg5Dv5Zx46D3pWMH9RxgKKjFgJwHeHQbrnmdFw8v6gCOl7uE4w0R8Ujxbj+1XaMzAZdZ9wCHGTDtJRL2EEWRMMDr0+CARJHq0ODOMd9NFEXCgJK5TGBnTj+ZIsj1c4nabiwrB66rvw0s+SUgG8A6AdYSvCN04sZN4LZ79cAaYqMktHF5YewGrk5JBS66+g2ZyOdKA9aM09cagQtMxcDDDnoNid8ZoKJX/80qPg1Q+RWKUGJUTIhPA/5++VBixKG4UADXYEYydjDokoAzLRbgqbEpDCiwcSHbB4L4K5JrXhlQA+8urwBO0+Jfbx5+Hni01wb8XovjcQs+YgA9OpBnRIP2VVUDt97pAFZnzSpoUqt5TCiABlYp8FdV+TCfk2cvU+OTRe9jWzNw9xssotQlEFwNUgf7HxSfNSCKohrAKWP+BA1zhf1tVGo8CneIDuWnQfut503A3TY8PDU3nAN2e+mHlZraJ8DJj+4CO3kvsLb2EvCz+3XAWzlc45/Hl6njy0uAdQKsJRvAOgHWEnygyJJ9EIqiNScA7Q9evgYmi+LszDiwyVRAHe/rhYvU9vYEF3DXpGuDnn80NjshPx9Ak2wA6wRYS/SDkmZDIdSEilw8TDW2vAX+PrIA7HAMA7c8vA5cGcDTnd2Dzxi1LuPhSWiNC0nyM0A2gHUCrCV5AyJ+WtykM0NRPGzKgHbeixsnUjYX3qI6rsKi+njyS0xf65H8DJANiFXglRVfrEJHVRHf81oKOo+s5y5n0rs14snuYXL7f8D1i1zqRl1joqgXmELDLlHvAg9N98X83UWa5BrAOgHWkrwBvwHdXxIT52BMdQAAAABJRU5ErkJggg=="></div>
       <div class="legend-text">
         <div class="legend-name" style="color:var(--cu);">ENCHANTED</div>
-        <div class="legend-desc">An item that has had orbs applied. Carries a rarity stamp — Rare, Epic, or Specialised — and may carry additional stamps depending on which orbs have been used.<br><span class="tag tag-corrupt">CORRUPTED</span> <span style="color:var(--muted);font-size:11px;">items cannot be targeted by any orb except Orb of the Forge.</span></div>
+        <div class="legend-desc">An item that has had orbs applied. Carries a rarity stamp — <span class="tag tag-rare">RARE</span> or <span class="tag tag-epic">EPIC</span> — and may carry additional stamps depending on which orbs have been used. Items labelled "Specialised" in the guides are a path to <span class="tag tag-epic">EPIC</span>, not a separate stamp.<br><span class="tag tag-corrupt">CORRUPTED</span> <span style="color:var(--muted);font-size:11px;">items cannot be targeted by any orb except Orb of the Forge.</span></div>
       </div>
     </div>
   </div>
@@ -235,7 +235,7 @@ html,body { width:100%; min-height:100vh; }
       <div class="orb-name">Orb of Blessing</div>
       <div class="orb-desc">Rerolls all non-transcended enchants and adds 3–5 fresh ones (60% · 3, 30% · 4, 10% · 5). Transcended enchants survive. Resets the one-use ADDED limit so Orb of Addition can be used again.</div>
       <div class="orb-meta">
-        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> or <span class="tag tag-specialised">SPECIALISED</span></span></div>
+        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span></span></div>
         <div class="orb-meta-row"><span class="meta-key">Forges</span><span class="meta-val">Clears <span class="tag tag-added">ADDED</span> stamp — retains <span class="tag tag-transcend">TRANSCENDED</span> if present</span></div>
       </div>
     </div>
@@ -247,7 +247,7 @@ html,body { width:100%; min-height:100vh; }
       <div class="orb-name">Orb of Addition</div>
       <div class="orb-desc">Adds exactly one random enchant to an item with an open slot. One use per item — using Orb of Blessing resets the limit.</div>
       <div class="orb-meta">
-        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> or <span class="tag tag-specialised">SPECIALISED</span> · Open enchant slot · No <span class="tag tag-added">ADDED</span> stamp</span></div>
+        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> · Open enchant slot · No <span class="tag tag-added">ADDED</span> stamp</span></div>
         <div class="orb-meta-row"><span class="meta-key">Forges</span><span class="meta-val"><span class="tag tag-added">ADDED</span></span></div>
       </div>
     </div>
@@ -328,7 +328,7 @@ html,body { width:100%; min-height:100vh; }
       <div class="orb-name" style="color:var(--cg);">Orb of Transcendence</div>
       <div class="orb-desc">One random enchant becomes permanently immune — cannot be removed, rerolled, or wiped by any orb. <strong style="color:var(--cb)">1 in 1,000 chance to transcend two enchants.</strong></div>
       <div class="orb-meta">
-        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> or <span class="tag tag-specialised">SPECIALISED</span> · 4+ enchants · One use per item</span></div>
+        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> · 4+ enchants · One use per item</span></div>
         <div class="orb-meta-row"><span class="meta-key">Forges</span><span class="meta-val"><span class="tag tag-transcend">TRANSCENDED</span></span></div>
       </div>
     </div>
@@ -340,7 +340,7 @@ html,body { width:100%; min-height:100vh; }
       <div class="orb-name">Orb of the Forge</div>
       <div class="orb-desc">Creates an exact copy of the item. The copy cannot be re-forged. The original is untouched and can be forged repeatedly. Works on corrupted items.</div>
       <div class="orb-meta">
-        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span> or <span class="tag tag-specialised">SPECIALISED</span></span></div>
+        <div class="orb-meta-row"><span class="meta-key">Requires</span><span class="meta-val"><span class="tag tag-epic">EPIC</span></span></div>
         <div class="orb-meta-row"><span class="meta-key">Forges</span><span class="meta-val"><span class="tag tag-copied">COPIED</span> on the duplicate</span></div>
       </div>
     </div>
