@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORB.FORGE — Orb Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a0f;--surface:#0e1118;--surface2:#131820;
+  --border:rgba(255,255,255,0.06);--text:#e2e8f0;--muted:#64748b;--dim:#334155;
+  --c4:#ff5555;--cm:#aa0000;--c6:#ffaa00;--c7:#aaaaaa;--c8:#555555;
+  --c9:#5555ff;--c3:#00aaaa;--ca:#55ff55;--cb:#55ffff;--cd:#ff55ff;
+  --c5:#ff55ff;--cg:#ddd605;--cp:#deb12d;--cq:#47a036;--cs:#2cbaa8;--cu:#9c5bd4;
+}
+html,body{width:100%;min-height:100vh}
+body{background:var(--bg);font-family:'Outfit',sans-serif;color:var(--text);overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:100;opacity:0.4}
+.wrap{max-width:600px;margin:0 auto;padding:28px clamp(12px,4vw,32px) 48px}
+.server-logo{text-align:center;margin-bottom:10px}
+.server-logo img{width:clamp(110px,32vw,180px);height:auto}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,42px);text-align:center;letter-spacing:0.06em;color:var(--c6);line-height:1;margin-bottom:3px}
+.page-sub{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+.header-line{height:1px;background:linear-gradient(90deg,transparent,var(--c6),transparent);opacity:0.3;margin-bottom:24px}
+
+/* SECTION */
+.section-label{font-family:‘Bebas Neue’,sans-serif;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(–dim);margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.section-label::before,.section-label::after{content:’’;flex:1;height:1px;background:var(–border)}
+
+/* RARITY ROW */
+.rarity-row{display:flex;gap:6px;margin-bottom:4px}
+.rarity-card{flex:1;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:var(–surface);border:1px solid var(–border)}
+.rarity-icon{width:26px;height:26px;border-radius:5px;background:var(–surface2);border:1px solid var(–border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rarity-icon img{width:20px;height:20px;image-rendering:pixelated}
+.rarity-name{font-family:‘Bebas Neue’,sans-serif;font-size:12px;letter-spacing:0.1em}
+.rarity-note{font-size:9px;color:var(–muted);font-weight:300;line-height:1.3;margin-top:1px}
+
+/* ORB GRID */
+.orb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(min-width:400px){.orb-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ORB TILE */
+.orb-tile{position:relative;border-radius:12px;background:var(–surface);border:1px solid var(–border);overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color 0.15s}
+.orb-tile.active{border-color:rgba(255,255,255,0.2)}
+.orb-tile-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px 8px;gap:6px;min-height:82px}
+.orb-tile-icon{width:40px;height:40px;border-radius:8px;background:var(–surface2);border:1px solid var(–border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.orb-tile-icon img{width:30px;height:30px;image-rendering:pixelated;image-rendering:crisp-edges}
+.orb-tile-name{font-family:‘Bebas Neue’,sans-serif;font-size:10px;letter-spacing:0.04em;text-align:center;line-height:1.2;color:var(–muted)}
+
+/* accent top bar */
+.orb-tile::before{content:’’;position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+.c-enchant::before{background:var(–cs)}
+.c-expand::before{background:var(–ca)}
+.c-chaos::before{background:var(–c5)}
+.c-entropy::before{background:var(–c8)}
+.c-blessing::before{background:var(–cp)}
+.c-addition::before{background:var(–cu)}
+.c-regret::before{background:var(–c3)}
+.c-illusive::before{background:var(–c3)}
+.c-absolution::before{background:var(–cd)}
+.c-repair::before{background:var(–cq)}
+.c-rename::before{background:var(–c9)}
+.c-transcend::before{background:var(–cg)}
+.c-forge::before{background:var(–c6)}
+.c-corruption::before{background:var(–c4)}
+
+/* name colours */
+.c-enchant .orb-tile-name{color:var(–cs)}
+.c-expand .orb-tile-name{color:var(–ca)}
+.c-chaos .orb-tile-name{color:var(–c5)}
+.c-entropy .orb-tile-name{color:var(–c8)}
+.c-blessing .orb-tile-name{color:var(–cp)}
+.c-addition .orb-tile-name{color:var(–cu)}
+.c-regret .orb-tile-name{color:var(–c3)}
+.c-illusive .orb-tile-name{color:var(–c3)}
+.c-absolution .orb-tile-name{color:var(–cd)}
+.c-repair .orb-tile-name{color:var(–cq)}
+.c-rename .orb-tile-name{color:var(–c9)}
+.c-transcend .orb-tile-name{color:var(–cg)}
+.c-forge .orb-tile-name{color:var(–c6)}
+.c-corruption .orb-tile-name{color:var(–c4)}
+
+/* DRAWER */
+.drawer{display:none;padding:10px 12px 12px;border-top:1px solid var(–border);background:var(–surface2)}
+.drawer.open{display:block}
+.drawer-desc{font-size:11px;font-weight:300;color:var(–muted);line-height:1.5;margin-bottom:7px}
+.pill-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pill{display:inline-flex;align-items:center;font-family:‘Space Mono’,monospace;font-size:8px;border-radius:3px;padding:2px 5px;white-space:nowrap}
+.arrow{color:var(–dim);font-size:10px;padding:0 1px}
+.pill-common{color:var(–muted);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)}
+.pill-rare{color:#ff8c00;background:rgba(255,140,0,0.08);border:1px solid rgba(255,140,0,0.20)}
+.pill-epic{color:var(–c6);background:rgba(255,170,0,0.08);border:1px solid rgba(255,170,0,0.18)}
+.pill-transcend{color:var(–cb);background:rgba(85,255,255,0.08);border:1px solid rgba(85,255,255,0.18)}
+.pill-graven{color:var(–c7);background:rgba(170,170,170,0.08);border:1px solid rgba(170,170,170,0.18)}
+.pill-added{color:var(–cu);background:rgba(156,91,212,0.10);border:1px solid rgba(156,91,212,0.22)}
+.pill-copied{color:var(–c6);background:rgba(255,170,0,0.08);border:1px solid rgba(255,170,0,0.18)}
+.pill-corrupt{color:var(–cm);background:rgba(170,0,0,0.10);border:1px solid rgba(170,0,0,0.22)}
+.pill-any{color:var(–muted);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)}
+.pill-enchanted{color:var(–cb);background:rgba(85,255,255,0.05);border:1px solid rgba(85,255,255,0.12)}
+.pill-warning{color:var(–c4);background:rgba(255,85,85,0.06);border:1px solid rgba(255,85,85,0.16)}
+.outcome-grid{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0 6px}
+.outcome{font-family:‘Space Mono’,monospace;font-size:8px;padding:2px 6px;border-radius:3px}
+.out-nothing{color:var(–muted);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)}
+.out-chaos{color:var(–c5);background:rgba(255,85,255,0.06);border:1px solid rgba(255,85,255,0.14)}
+.out-ascend{color:var(–cb);background:rgba(85,255,255,0.06);border:1px solid rgba(85,255,255,0.14)}
+.out-drain{color:var(–c4);background:rgba(255,85,85,0.06);border:1px solid rgba(255,85,85,0.14)}
+.out-transmute{color:var(–cp);background:rgba(222,177,45,0.06);border:1px solid rgba(222,177,45,0.14)}
+.out-surge{color:var(–cg);background:rgba(221,214,5,0.06);border:1px solid rgba(221,214,5,0.14)}
+.out-jackpot{color:var(–c6);background:rgba(255,170,0,0.10);border:1px solid rgba(255,170,0,0.22)}
+
+/* FOOTER */
+.footer{margin-top:28px;padding-top:14px;border-top:1px solid var(–border);display:flex;justify-content:space-between;align-items:center}
+.footer-tag{font-family:‘Space Mono’,monospace;font-size:8px;letter-spacing:0.2em;color:var(–dim);text-transform:uppercase}
+.footer-logo img{width:32px;height:32px;object-fit:contain;opacity:0.8}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<div class="server-logo"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/ORBFORGESMP.png" alt="ORB.FORGE SMP"></div>
+<div class="page-title">Orb Reference</div>
+<div class="page-sub">Tap an orb to expand</div>
+<div class="header-line"></div>
+
+<div class="section-label">Rarity</div>
+<div class="rarity-row">
+  <div class="rarity-card">
+    <div class="rarity-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/enchant_orb.png" alt=""></div>
+    <div><div class="rarity-name" style="color:var(--muted)">COMMON</div><div class="rarity-note">No stamps.</div></div>
+  </div>
+  <div class="rarity-card">
+    <div class="rarity-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/forge_orb.png" alt=""></div>
+    <div><div class="rarity-name" style="color:var(--cu)">ENCHANTED</div><div class="rarity-note"><span style="color:#ff8c00">RARE</span> or <span style="color:var(--c6)">EPIC</span>. <span style="color:var(--cm)">CORRUPTED</span> = Forge only.</div></div>
+  </div>
+</div>
+
+<div class="section-label">All Orbs</div>
+<div class="orb-grid">
+
+  <div class="orb-tile c-enchant" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/enchant_orb.png" alt=""></div>
+      <div class="orb-tile-name">Subtle Power</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Adds up to 3 random enchants.</div>
+      <div class="pill-row"><span class="pill pill-common">Common</span><span class="arrow">→</span><span class="pill pill-rare">RARE</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-expand" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/expand_orb.png" alt=""></div>
+      <div class="orb-tile-name">Humming Power</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Adds more enchants on top of Rare.</div>
+      <div class="pill-row"><span class="pill pill-rare">RARE</span><span class="arrow">→</span><span class="pill pill-epic">EPIC</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-chaos" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/upgrade_orb.png" alt=""></div>
+      <div class="orb-tile-name">Chaos</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Rerolls every enchant level randomly.</div>
+      <div class="pill-row"><span class="pill pill-enchanted">Enchanted</span><span class="pill pill-transcend">Keeps TRANSCENDED</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-entropy" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/restore_orb.png" alt=""></div>
+      <div class="orb-tile-name">Entropy</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Wipes all enchants. Resets to Common.</div>
+      <div class="pill-row"><span class="pill pill-enchanted">Enchanted</span><span class="pill pill-transcend">Keeps TRANSCENDED</span><span class="pill pill-warning">No re-transcend</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-blessing" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/blessing_orb.png" alt=""></div>
+      <div class="orb-tile-name">Blessing</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Rerolls enchants, adds 3–5 new ones. Resets ADDED limit.</div>
+      <div class="pill-row"><span class="pill pill-epic">EPIC</span><span class="pill pill-transcend">Keeps TRANSCENDED</span><span class="pill pill-added">Clears ADDED</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-addition" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/addition_orb.png" alt=""></div>
+      <div class="orb-tile-name">Addition</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Adds one enchant to an open slot. One use per item.</div>
+      <div class="pill-row"><span class="pill pill-epic">EPIC</span><span class="pill pill-any">Open slot</span><span class="pill pill-any">No ADDED</span><span class="arrow">→</span><span class="pill pill-added">ADDED</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-regret" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/regret_orb.png" alt=""></div>
+      <div class="orb-tile-name">Regret</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Removes one random enchant. Permanently blocks both Regret orbs.</div>
+      <div class="pill-row"><span class="pill pill-enchanted">Enchanted</span><span class="pill pill-any">No GRAVEN</span><span class="arrow">→</span><span class="pill pill-graven">GRAVEN</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-illusive" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/illusive_regret_orb.png" alt=""></div>
+      <div class="orb-tile-name">Illusive Regret</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">You pick which enchant to remove. Right-click.</div>
+      <div class="pill-row"><span class="pill pill-enchanted">Enchanted</span><span class="pill pill-any">No GRAVEN</span><span class="arrow">→</span><span class="pill pill-graven">GRAVEN</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-absolution" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/absolution_orb.png" alt=""></div>
+      <div class="orb-tile-name">Absolution</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Removes one random enchant. No GRAVEN penalty.</div>
+      <div class="pill-row"><span class="pill pill-enchanted">Enchanted</span><span class="pill pill-transcend">Keeps TRANSCENDED</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-repair" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/repair_orb.png" alt=""></div>
+      <div class="orb-tile-name">Repair</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Full durability restore. Nothing else changes.</div>
+      <div class="pill-row"><span class="pill pill-any">Any damaged item</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-rename" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/rename_orb.png" alt=""></div>
+      <div class="orb-tile-name">Onymorph</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Right-click to set a name, drag onto any item. Single use.</div>
+      <div class="pill-row"><span class="pill pill-any">Any item</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-transcend" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/transcendence_orb.png" alt=""></div>
+      <div class="orb-tile-name">Transcendence</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Locks one enchant permanently. 1 in 1,000: locks two.</div>
+      <div class="pill-row"><span class="pill pill-epic">EPIC</span><span class="pill pill-any">4+ enchants</span><span class="pill pill-any">One use</span><span class="arrow">→</span><span class="pill pill-transcend">TRANSCENDED</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-forge" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/forge_orb.png" alt=""></div>
+      <div class="orb-tile-name">The Forge</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Makes an exact copy. Original untouched. Works on corrupted.</div>
+      <div class="pill-row"><span class="pill pill-epic">EPIC</span><span class="arrow">→</span><span class="pill pill-copied">COPIED on duplicate</span></div>
+    </div>
+  </div>
+
+  <div class="orb-tile c-corruption" onclick="toggle(this)">
+    <div class="orb-tile-inner">
+      <div class="orb-tile-icon"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/corruption_orb.png" alt=""></div>
+      <div class="orb-tile-name">Corruption</div>
+    </div>
+    <div class="drawer">
+      <div class="drawer-desc">Seals the item forever. Random outcome.</div>
+      <div class="outcome-grid">
+        <span class="outcome out-nothing">Nothing</span>
+        <span class="outcome out-drain">Drain/Purge</span>
+        <span class="outcome out-ascend">Ascension</span>
+        <span class="outcome out-chaos">Chaos</span>
+        <span class="outcome out-transmute">Transmute</span>
+        <span class="outcome out-surge">Surge</span>
+        <span class="outcome out-jackpot">??? Jackpot</span>
+      </div>
+      <div class="pill-row"><span class="pill pill-any">Any item</span><span class="arrow">→</span><span class="pill pill-corrupt">CORRUPTED</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-tag">Built Under Pressure</div>
+  <div class="footer-logo"><img src="https://raw.githubusercontent.com/n00bslayr94/ORB.FORGE-SMP-Guides/main/RebellionOrb.png" alt="Rebellion"></div>
+</div>
+</div>
+
+<script>
+function toggle(tile) {
+  const drawer = tile.querySelector('.drawer');
+  const isOpen = drawer.classList.contains('open');
+  document.querySelectorAll('.drawer.open').forEach(d => {
+    d.classList.remove('open');
+    d.closest('.orb-tile').classList.remove('active');
+  });
+  if (!isOpen) {
+    drawer.classList.add('open');
+    tile.classList.add('active');
+  }
+}
+</script>
+
+</body>
+</html>
